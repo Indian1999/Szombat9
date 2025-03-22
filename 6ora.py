@@ -168,5 +168,22 @@ for i in range(1, 11):
 print(lista)
 
 # 9. feladat: Az első 20 prímszámot tartalmazza
+print("9. feladat:")
+lista = []
+num = 2
+while len(lista) < 20:
+    isPrime = True
+    for i in range(2, num):
+        if num % i == 0:
+            isPrime = False
+    if isPrime:
+        lista.append(num)
+print(lista)
 
 # 10. feladat: [100-999, azok a számok, amelyekben szerepel a 13] (132, 813)
+print("10. feladat:")
+lista = []
+for i in range(100, 1000):
+    if "13" in str(i):
+        lista.append(i)
+print(lista)
