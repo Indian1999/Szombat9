@@ -178,6 +178,7 @@ while len(lista) < 20:
             isPrime = False
     if isPrime:
         lista.append(num)
+    num += 1
 print(lista)
 
 # 10. feladat: [100-999, azok a számok, amelyekben szerepel a 13] (132, 813)
