@@ -104,22 +104,68 @@ lista = []
 for i in range(10):
     lista.append(i)
 print(lista)
-
+print()
+print("#" * 50)
+print()
 # 1. feladat: Generáljunk egy listát ami a számokat tartalmazza 0-20-ig
+print("1. feladat:")
+lista = []
+for i in range(21):
+    lista.append(i)
+print(lista)
 
 # 2. feladat: 5-15-ig a számok egy listában
+print("2. feladat:")
+lista = []
+for i in range(5, 16):
+    lista.append(i)
+print(lista)
 
 # 3. feladat: [15, 30, 45, 60, ..., 150]
+print("3. feladat:")
+lista = []
+for i in range(15, 151, 15):
+    lista.append(i)
+print(lista)
 
 # 4. feladat: [80, 79, 78, ..., 56, 55, 54]
+print("4. feladat:")
+lista = []
+for i in range(80, 53, -1):
+    lista.append(i)
+print(lista)
 
 # 5. feladat: [1, 4, 9, 16, 25, 36, ..., 400] (négyzetszámok)
+print("5. feladat:")
+lista = []
+for i in range(1, 21):
+    lista.append(i*i)
+print(lista)
 
 # 6. feladat: [1, 1, 2, 3, 5, 8, 13, 21, 34, ...] (fibonacci) Összesen mondjuk 20 elem
+print("6. feladat:")
+lista = [1, 1]
+while len(lista) < 20:
+    lista.append(lista[-1] + lista[-2])
+print(lista)
 
 # 7. feladat: [1, -2, 3, -4, 5, -6, .... 9, -10]
+print("7. feladat:")
+lista = []
+for i in range(1, 11):
+    if i % 2 == 0:
+        lista.append(-i)
+    else:
+        lista.append(i)
+print(lista)
 
 # 8. feladat: [1, -1, 2, -2, 3, -3, .... 9, -9, 10, -10]
+print("8. feladat:")
+lista = []
+for i in range(1, 11):
+    lista.append(i)
+    lista.append(-i)
+print(lista)
 
 # 9. feladat: Az első 20 prímszámot tartalmazza
 
