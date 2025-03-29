@@ -45,7 +45,6 @@ while life > 0 and my_solution != puzzle: # Amíg tart a játék
         
 
 if life > 0:
-
     print(puzzle)
     print("Gratulálok, kitaláltad!")
 else:
