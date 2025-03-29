@@ -168,6 +168,7 @@ for i in range(1, 11):
 print(lista)
 
 # 9. feladat: Az első 20 prímszámot tartalmazza
+""" Kövi órán beszéljük meg!"""
 print("9. feladat:")
 lista = []
 num = 2
