@@ -27,9 +27,26 @@ while life > 0 and my_solution != puzzle: # Amíg tart a játék
                 lista = list(my_solution) # ["*", "*", "a", "*", " ", "*", "f", "*"]
                 lista[i] = tipp
                 my_solution = "".join(lista) # A my_solution legyen egyenlő a lista elemeivel "" (üres string)-el elválasztva "b*a* *f*"
+        if found:
+            correct_letters.append(tipp)
+        else:
+            wrong_letters.append(tipp)
+            life -= 1
+            print(f"{tipp} betű nem szerepel a feladványban, még {life} életed maradt.")
+    else:
+        if tipp == puzzle:
+            print("Eltaláltad!")
+            my_solution = tipp
+        else:
+            life -= 1
+            print(f"Nem ez a megoldás! Még {life} életed maradt.")
+    print("Kitalált betűk:", correct_letters)
+    print("Elrontott betűk:", wrong_letters)
         
 
 if life > 0:
+
+    print(puzzle)
     print("Gratulálok, kitaláltad!")
 else:
     print(f"Ez most nem jött össze. A megoldás ez volt: {puzzle}")
