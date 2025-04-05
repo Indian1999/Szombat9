@@ -45,11 +45,29 @@ def check_for_win():
     # Ha nem volt sehol egyezés, nincs nyertes
     return False
     
+def check_for_draw():
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == "-":
+                return False
+    return True
+
 while gameOn:
     show_board()
     read_and_put_symbol()
     
     have_winner = check_for_win()
-    print(have_winner)
+    if have_winner:
+        if player_1_turn:
+            winner = "X wins"
+        else:
+            winner = "O wins"
+        gameOn = False
+        
+    if check_for_draw():
+        gameOn = False
     
     player_1_turn = not player_1_turn
+
+show_board()
+print(winner)
