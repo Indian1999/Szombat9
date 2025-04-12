@@ -8,6 +8,7 @@ board = [
 ]
 gameOn = True
 player_1_turn = True
+against_computer = False
 winner = "draw"
 
 def show_board():
@@ -17,9 +18,14 @@ def show_board():
 def read_and_put_symbol():
     sor = 10
     oszlop = 10
-    while sor > 3 or sor < 1 or oszlop > 3 or oszlop < 1 or board[sor][oszlop] != "-":
-        sor = int(input("Adj meg egy sort!\n"))
-        oszlop = int(input("Adj meg egy oszlopot!\n"))
+    if player_1_turn or not against_computer:
+        while sor > 3 or sor < 1 or oszlop > 3 or oszlop < 1 or board[sor][oszlop] != "-":
+            sor = int(input("Adj meg egy sort!\n"))
+            oszlop = int(input("Adj meg egy oszlopot!\n"))
+    else:
+        while sor > 3 or sor < 1 or oszlop > 3 or oszlop < 1 or board[sor][oszlop] != "-":
+            sor = random.randint(1,3)
+            oszlop = random.randint(1,3)
         
     if player_1_turn:
         board[sor][oszlop] = "X"
@@ -51,6 +57,10 @@ def check_for_draw():
             if board[i][j] == "-":
                 return False
     return True
+
+answer = input('Számítógép ellen szeretnél játszani? (igen/nem)\n')
+if answer == "igen":
+    against_computer = True
 
 while gameOn:
     show_board()
