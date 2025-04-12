@@ -1,12 +1,14 @@
 # 1. feladatban egy kilogrammban megadott értéket váltsunk át grammba
 kg = 6 # int(input("Adj meg egy kilogramm értéket!\n"))
+print(f"{kg} kg = {kg * 1000} g")
 # b, g -> kg
 g = 4362
+print(f"{g} g = {g / 1000} kg")
 # 2. feladatban Egy program ami °F - °C átváltás
 # F = 1.8 * C + 32
 # C = (F - 32 ) / 1.8
-
 fahrenheit = 65
+print(f"{fahrenheit} °F = {round( (fahrenheit - 32) / 1.8 )} °C")
 
 celsius = 32
 
@@ -27,7 +29,7 @@ celsius = 32
 # Határozzuk meg, hogy a háromszög létezik-e? (szerkeszthető)
     # Bármely két oldal hosszának összege, legyen nagyobb a 3. oldal hoszsánál
     # a + b > c és a + c > b és b + c > a
-# Ha derékszögű, írjuk ki hogy derékszögű
+# Ha derékszögű, írjuk ki hogy derékszögű  (pitagorasz: a^2 + b^2 = c^2)
 # Ha egyenlő szárú vagy szabályos azt is írjuk ki
 a = 3
 b = 4
