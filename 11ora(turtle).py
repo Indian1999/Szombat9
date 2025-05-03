@@ -10,4 +10,22 @@ vezeteknevek = ["Smith", "Boyle", "Novak", "Doe"]
 for kereszt in keresztnevek:
     for vezetek in vezeteknevek:
         print(kereszt, vezetek)
+        
+# 3. feladat: Írjunk ki * karaktereket félpiramis alakban
+#    *
+#    **
+#    ***
+#    ****
+#    *****
+
+for i in range(1, 11):
+    print("*" * i)
+    
+# 4. feladat: Találjuk meg és írjuk ki az összes lehetséges párt
+nevek = ["Ádám", "Béla", "Cecil", "Dénes", "Elemér", "Ferenc", "Gábor", "Hugó"]
+# Ádám Béla
+# Cecil Dénes (Dénes Cecil ne legyen)
+for i in range(len(nevek)):
+    for j in range(i + 1, len(nevek)):
+        print(nevek[i], nevek[j])
 
