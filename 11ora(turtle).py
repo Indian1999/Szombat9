@@ -79,5 +79,31 @@ for item in lista:
         
 print(f"A negatív számok száma a listában: {neg_számláló}.")
 
+# Rendezzük ezt a listát növekvő sorrendbe
+for i in range(0, len(lista) - 1):
+    for j in range(i + 1, len(lista)):
+        if lista[j] < lista[i]:
+            lista[i], lista[j] = lista[j], lista[i]
+            
+print(lista)
 
+# Ha fordítva akarjuk rendezni, akkor csak megfordul a kacsacsőr
+for i in range(0, len(lista) - 1):
+    for j in range(i + 1, len(lista)):
+        if lista[j] > lista[i]:   # <----- ITT fordul a kacsacsőr
+            lista[i], lista[j] = lista[j], lista[i]
+            
+print(lista)
 
+# Beépített rendező algoritmusok
+lista = [4, 5, 7, 1, 2, 3, 52, 1, 2, 8]
+
+print(sorted(lista)) # Megnézi, hogy hogy nézne ki a lista ha rendezve lenne, de NEM rendezi
+print(lista)
+lista.sort() # helyben rendezi a listát
+print(lista)
+
+lista.sort(reverse=True)
+print(lista)
+
+ 
