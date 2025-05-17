@@ -108,3 +108,8 @@ for i in range(len(árak)):
         végösszeg += 2 * árak[i]
 print(f"2 alma, 4 tej, 3 csoki, 1 könyv és 2 zokni ára: {végösszeg} Ft.")
 
+# 9. feladat: Írjuk ki azokat a termékeket, amik az átlagnál drágábbak
+átlag = sum(árak) / len(árak)
+for i in range(len(árak)):
+    if árak[i] > átlag:
+        print(f"{termékek[i]} - {árak[i]} Ft")
