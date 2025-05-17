@@ -81,8 +81,30 @@ print(f"A num változó értéke: {num}.")
 print("A num változó értéke: {num}.")
 
 # 6. feladat: Melyik termék a legdrágább és mennyibe kerül?
+maxi = 0
+for i in range(1, len(árak)):
+    if árak[i] > árak[maxi]:
+        maxi = i
+print(f"A legdrágább termék: {termékek[i]}, {árak[i]} Ft-ba kerül.")
 
 # 7. feladat: Átlagosan mennyibe kerülnek a termékek?
+összeg = 0
+for item in árak:
+    összeg += item
+print(f"Egy termék ára átlagosan: {összeg/len(árak)} Ft")
 
 # 8. feladat: Mennyibe kerül 2 alma, 4 tej, 3 csoki, 1 könyv és 2 zokni
+végösszeg = 0
+for i in range(len(árak)):
+    if termékek[i] == "alma":
+        végösszeg += 2 * árak[i]
+    if termékek[i] == "tej":
+        végösszeg += 4 * árak[i]
+    if termékek[i] == "csoki":
+        végösszeg += 3 * árak[i]
+    if termékek[i] == "könyv":
+        végösszeg += 1 * árak[i]
+    if termékek[i] == "zokni":
+        végösszeg += 2 * árak[i]
+print(f"2 alma, 4 tej, 3 csoki, 1 könyv és 2 zokni ára: {végösszeg} Ft.")
 
