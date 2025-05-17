@@ -66,6 +66,23 @@ lista2.sort()
 print(lista1)
 print(lista2)
 
-        
+# 5. feladat: Írjuk ki azokat a termékeket amik kevesebb mint 100 forintba kerülnek
+termékek = ["alma", "csoki", "kenyér", "tej", "könyv", "ceruza", "fánk", "zokni", "fogkefe", "csirkemell"]
+árak = [210, 600, 1100, 450, 3000, 1200, 200, 2000, 390, 2500]
+print("Az 1000 Ft-nál olcsóbb termékek:")
+for i in range(len(árak)):
+    if árak[i] < 1000:
+        print(f"{termékek[i]} - {árak[i]} Ft")
+        #print(termékek[i] + " - " + str(árak[i]) + " Ft")
 
+num = 7
+print("A num változó értéke: " + str(num) + ".")
+print(f"A num változó értéke: {num}.")
+print("A num változó értéke: {num}.")
+
+# 6. feladat: Melyik termék a legdrágább és mennyibe kerül?
+
+# 7. feladat: Átlagosan mennyibe kerülnek a termékek?
+
+# 8. feladat: Mennyibe kerül 2 alma, 4 tej, 3 csoki, 1 könyv és 2 zokni
 
