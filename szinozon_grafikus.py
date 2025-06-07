@@ -14,7 +14,8 @@ puzzle = generate_puzzle() # pl.: 5723
 tippek_szama = 0
 
 def check_tipp():
-    tipp = "1234"
+    global tippek_szama # hiba miatt: cannot acces local variable
+    tipp = textbox.get()
     if len(tipp) != 4 or not tipp.isdigit() or len(set(tipp)) != 4:
         tkinter.messagebox.showwarning("HIBA!", "4 különböző 1-8 közötti számjegyet adj meg!")
         return
@@ -28,9 +29,15 @@ def check_tipp():
             jo_szamok += 1
     tippek_szama += 1
     if tipp == puzzle:
-        pass
+        result_label.config(text = f"Szép volt! {tippek_szama} lépésből kitaláltad, hogy a megoldás {puzzle} volt.")
+        textbox.config(state="disabled")
+        btn_guess.config(state="disabled")
     else:
-        pass
+        history.config(state="normal")
+        feedback = f"{tipp}     ->     jó: {jo_szamok_jo_helyen},     más hely: {jo_szamok}"
+        history.insert(tkinter.END, feedback)
+        history.config(state="disabled")
+        textbox.delete(0, tkinter.END)
     
 root = tkinter.Tk()
 root.title("Színözön")
@@ -40,6 +47,7 @@ tkinter.Label(root, text="Adj meg 4 különböző 1-8 közötti számjegyet (pl.
 textbox = tkinter.Entry(root)
 textbox.pack(pady=5)
 textbox.focus()
+textbox.bind("<Return>", lambda x: check_tipp())
 
 btn_guess = tkinter.Button(root, text = "Tippelés", command = check_tipp)
 btn_guess.pack(pady = 5)
