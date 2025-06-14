@@ -13,7 +13,9 @@ tudsz jutni innen! Sok sikert!
 while gameOn:
     room_number = input("Melyik szobába szeretnél bemenni? (0-13, -1)\n")
     if room_number == "-1":
-        pass
+        print("A történeted idáig:")
+        for i in range(len(rooms)):
+            print(f"{rooms[i]}. szoba: {items[i]}")
     if room_number == "0":
         pass
     if room_number == "1":
@@ -24,16 +26,24 @@ while gameOn:
         pass
     if room_number == "4":
         pass
-    if room_number == "5":
-        pass
+    if room_number == "5": # x = 10111 - 10001    23 - 17 = 6
+        print("Egy egyenlet van a falon: x = 10111 - 10001")
+        print("Biztosan az x lesz az egyik számjegy...")
+        if room_number not in rooms:
+            rooms.append(room_number)
+            items.append("x = 10111 - 10001")
     if room_number == "6":
         pass
     if room_number == "7":
         pass
     if room_number == "8":
         pass
-    if room_number == "9":
-        pass
+    if room_number == "9": # binárból decimálsba
+        print("""Egy cetlit találsz a szobában, amira az van írva, hogy
+binárisból decimálisba. Ez az info még biztosan hasznos lesz...""")
+        if room_number not in rooms:
+            items.append("binárisból decimálisba")
+            rooms.append(room_number)
     if room_number == "10":
         pass
     if room_number == "11":
