@@ -18,7 +18,18 @@ while gameOn:
         for i in range(len(rooms)):
             print(f"{rooms[i]}. szoba: {items[i]}")
     if room_number == "0":
-        pass
+        if room_number not in rooms:
+            rooms.append(room_number)
+            items.append("kulcs")
+            print("""A szobában nincs semmi, csak nagyon fényesen világít egy villanykörte. úgy látod mintha lenne benne
+valami, ezért összetöröd és mostmár kukk sötét van. A szilánkok között tapogatózva megvágod
+egy picit a kezed, de rátalálsz egy kulcsra. Még biztos jól fog jönni a későbbiekben...""")
+            if "lezárt doboz" in items:
+                rooms.append(room_number)
+                items.append("hús")
+                print("A kulcs pont illeszkedik a lezárt dobozba. Kinyitod és egy szelet húst találsz benne.")
+        else:
+            print("A szoba még mindig kukk sötét.")
     if room_number == "1":
         pass
     if room_number == "2":
@@ -51,7 +62,12 @@ táljából. Többszörös újranézés után meglátod, hogy táljára egy 2-es
     if room_number == "6":
         pass
     if room_number == "7":
-        pass
+        if room_number not in rooms:
+            rooms.append(room_number)
+            items.append("balta")
+            print("A szobába belépve egy baltát látsz a falnakj támasztva. Tuti jól fog még jönni...")
+        else:
+            print("A szoba kong az ürességtől.")
     if room_number == "8":
         print("""A szobába belépve azt látod, hogy egy bohóc ül egy székben  és
 3 db színes lufit tart a kezében.""")
@@ -78,8 +94,22 @@ binárisból decimálisba. Ez az info még biztosan hasznos lesz...""")
             items.append("7 kapcsoló a falon")
         switches = input("Add meg, hogy milyen sorrendben akarod felkapcsolni a kapcsolókat (pl.: 0101111)\n")
     if room_number == "13":
-        pass
-    
+        if room_number not in rooms:
+            rooms.append(room_number)
+            items.append("korhadt faláda")
+        if "lezárt doboz" not in items:
+            print("""Ebben a szobában egy korhadt ládát találsz. Elég gyengének tűnik, viszont úgy néz ki mintha lenne benne
+valami. Kézzel nem tudod kinyitni, keresni kéne hozzá valami eszközt...""")
+            if "balta" in items:
+                print("A korábban összeszedett baltával szétvered a ládát és lakattal lezárt kis dobozt találsz benne.")
+                rooms.append(room_number)
+                items.append("lezárt doboz")
+                if "kulcs" in items:
+                    print("A nálad lévő kulccsal kinyitod a dobozt és egy szelet húst találsz benne.")
+                    rooms.append(room_number)
+                    items.append("hús")
+        else:
+            print("Itt szerezted meg a lezárt dobozt.")    
     
 if win:
     print("Kijutottál! Gratulálok!")
