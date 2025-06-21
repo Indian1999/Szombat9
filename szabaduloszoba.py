@@ -31,7 +31,15 @@ egy picit a kezed, de rátalálsz egy kulcsra. Még biztos jól fog jönni a ké
         else:
             print("A szoba még mindig kukk sötét.")
     if room_number == "1":
-        pass
+        print("""Egy mesekönyvet találsz, amiben a következő kis rövid történetet olvasod:
+    Egyszer volt, hol nem volt, élt egyszer egy Leo nevű oroszlán, aki nagyon szeretett egyenleteket oldani.
+Ebben mindig segítségére volt legjobb barátja Cirmi, a bohóc cica. Időről időre előfordult,
+hogy Leo nem tudott rájönni a megoldásra, de ilyenkor Cirmi feje fölött mindig felvillant egy villanykörte.
+Boldog éltek, míg meg nem haltak.
+Elég fura történet...""")
+        if room_number not in rooms:
+            rooms.append(room_number)
+            items.append("mesekönyv")
     if room_number == "2":
         print(f"A falra 7 számjegy van felfestve: {correct_switches}")
         if room_number not in rooms:
@@ -60,7 +68,24 @@ táljából. Többszörös újranézés után meglátod, hogy táljára egy 2-es
             rooms.append(room_number)
             items.append("x = 10111 - 10001")
     if room_number == "6":
-        pass
+        if room_number not in rooms:
+            rooms.append(room_number)
+            items.append("oroszlán")
+            print("Uram Isten! Egy oroszlán van a szobában! Úgy néz ki, mintha nagyon őrizne valamit.")
+        else:
+            print("Még mindig itt az oroszlán.")
+        akció = input("Megpróbálod elterelni az oroszlán figyelmét, hogy lásd mit őriz? (igen/nem)\n")
+        if akció == "igen":
+            if "hús" in items:
+                print("A sarokba dobod a szelet húst amit találtál, az oroszlán pedig utána ered.")
+                print("Az oroszlán egy ezüst serleget védelmezett amire egy 4-es számjegy van írva.")
+                rooms.append(room_number)
+                items.append("4-es ezüst serleg")
+            else:
+                print("Megpróbálod elterelni a figyelmét, de csak rádtámad és te meghalsz.")
+                gameOn = False
+        else:
+            print("Majd legközelebb...")
     if room_number == "7":
         if room_number not in rooms:
             rooms.append(room_number)
@@ -81,7 +106,24 @@ binárisból decimálisba. Ez az info még biztosan hasznos lesz...""")
             items.append("binárisból decimálisba")
             rooms.append(room_number)
     if room_number == "10":
-        pass
+        if room_number not in rooms:
+            rooms.append(room_number)
+            items.append("kijárat")
+        print("Itt található a kijárat a szabadulószobából, viszont egy 4-számjegyű kombinációs lakat védi.")
+        print(f"Vigyázz, mert összesen csak {chances} alkalommal próbálkozhatsz!")
+        akció = input("Megpróbálod beütni a számjegyeket? (igen/nem)\n")
+        if akció == "igen":
+            tipp = input("Add meg a 4 számjegyet (pl.: 1234): ")
+            if tipp == solution:
+                gameOn = False
+                win = True
+            else:
+                chances -= 1
+                print(f"Helytelen kód! Még {chances} próbálkozásod maradt!")
+                if chances == 0:
+                    gameOn = False
+        else:
+            print("Majd viszajössz később...")
     if room_number == "11":
         print("""Itt egy festményt találsz amin az látható ahogy 2 bohóc kerget egy cicát.""")
         if room_number not in rooms:
