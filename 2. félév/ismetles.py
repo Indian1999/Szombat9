@@ -96,3 +96,24 @@ def print_n(n, string):
         
 print_n(5, "cica")
 print_n(2, "A kutya fálmászott a fára a cica után.")
+
+
+print(pet_animal("cica")) # None
+
+print(max([4,2,5,3,2])) # 5
+
+# Implementáljuk az f(x) = 4x - 2 függvényt
+def f(x):
+    return 4 * x - 2
+
+f(5) # 18 (literál)
+18
+
+print(f(3))
+print(f(10))
+
+i = -10
+while f(i) <= 10:
+    i += 1
+    
+print(f"A legkisebb egész szám amire az f(x) függvény nagyobb, mint 10: x = {i}")
