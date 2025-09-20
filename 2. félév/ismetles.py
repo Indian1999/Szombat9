@@ -43,3 +43,39 @@ if found_divisible:
     print("Tartalmaz 11-el osztható számot.")
 else:
     print("Nem tartalmaz 11-el osztható számot.")
+    
+    
+def say_hi():
+    print("Szia!")
+    
+say_hi()
+
+def say_hi_to(name): # name paraméter definiáláskor PARAMÉTER-nek hívjuk
+    print(f"Szia {name}!")
+
+say_hi_to("András") # "András" a say_hi_to függvényhívás ARGUMENTUM-a
+say_hi_to("Béla")
+say_hi_to("Cecil")
+say_hi_to("Dénes")
+
+def say_time_hi_to(time, name):
+    if time == 1:
+        print(f"Jó reggelt {name}!")
+    elif time == 2:
+        print(f"Jó napot {name}!")
+    elif time == 3:
+        print(f"Jó estét {name}!")
+    else:
+        print(f"Szia {name}!")
+        
+say_time_hi_to(1, "András")
+say_time_hi_to(2, "Béla")
+say_time_hi_to(3, "Cecil")
+say_time_hi_to([], "Dénes")
+say_time_hi_to("cica", "Elemér")
+
+# Írjunk egy függvényt ami paraméterben megkap egy állatot és kiírja, hogy:
+# Olyan jó simogatni ezt a(z) <állat neve>-t!
+
+# Írjunk egy függvényt ami paraméterben megkap 1 számot és egy stringet és a függvény
+# annyi alkalommal kiírja a stringet amennyi a szám értéke.
