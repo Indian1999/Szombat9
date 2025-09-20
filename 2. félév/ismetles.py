@@ -25,5 +25,21 @@ import random
 # 3. feladat: Adott egy egész számokat tartalmazó lista
 lista = [random.randint(-20, 20) for i in range(15)]
 print(lista)
-# a, Határozzuk meg a számok átlagát
-# b, Döntsük el, hogy van-e 11-el osztható szám a listában
+# a, Határozzuk meg a számok átlagát (for)
+összeg = 0
+for i in range(len(lista)):
+    összeg += lista[i]
+print(f"A számok átlaga: {round(összeg / len(lista), 2)}")
+
+# b, Döntsük el, hogy van-e 11-el osztható szám a listában (while)
+found_divisible = False
+i = 0
+while not found_divisible and i < len(lista):
+    if lista[i] % 11 == 0:
+        found_divisible = True
+    i += 1
+
+if found_divisible:
+    print("Tartalmaz 11-el osztható számot.")
+else:
+    print("Nem tartalmaz 11-el osztható számot.")
