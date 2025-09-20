@@ -76,6 +76,23 @@ say_time_hi_to("cica", "Elemér")
 
 # Írjunk egy függvényt ami paraméterben megkap egy állatot és kiírja, hogy:
 # Olyan jó simogatni ezt a(z) <állat neve>-t!
+def pet_animal(animal):
+    vowels = "öüóűúőoiueaéáí"
+    if animal[0] in vowels:
+        print(f"Olyan jó simogatni ezt az {animal}-t!")
+    else:
+        print(f"Olyan jó simogatni ezt a {animal}-t!")
+        
+pet_animal("oroszlán")
+pet_animal("kutya")
+pet_animal("kígyó")
 
 # Írjunk egy függvényt ami paraméterben megkap 1 számot és egy stringet és a függvény
 # annyi alkalommal kiírja a stringet amennyi a szám értéke.
+
+def print_n(n, string):
+    for i in range(n):
+        print(string)
+        
+print_n(5, "cica")
+print_n(2, "A kutya fálmászott a fára a cica után.")
