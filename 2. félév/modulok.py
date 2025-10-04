@@ -4,6 +4,7 @@ from functools import cache
 from sys import getrecursionlimit, setrecursionlimit
 import numpy as np              # terminálba: pip install numpy
 import matplotlib.pyplot as plt # pip install matplotlib
+from matplotlib.colors import LinearSegmentedColormap
 
 image = [
     [0,0,0,0,0,0,0,0],
@@ -16,6 +17,11 @@ image = [
     [0,0,1,0,0,1,0,0]
 ]
 
+paletta = LinearSegmentedColormap.from_list("creeper", ["green", "black"])
+plt.imshow(image, cmap = paletta)
+plt.axis("off")
+plt.savefig("creeper.png")
+plt.show()
 
 def numpy_bevezeto():
     tomb = np.array([7,3,6,3,2])
