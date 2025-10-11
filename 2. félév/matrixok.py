@@ -12,6 +12,8 @@ mtx = [
     [9, 1, 4, 0, 8, 9, 9, 3],   # 3
     [8, 0, 44, 1, 2, 5, 2, 8]   # 4
 ]
+
+# lista = [69984, ...]
 print(mtx)
 for row in mtx:
     print(row)
@@ -61,9 +63,54 @@ else:
 
 # Megszámlálás tétele:
 # Hány elem van a mátrixban ami 3-mal osztható (De nem 0!)
+számláló = 0
+for i in range(len(mtx)):
+    for j in range(len(mtx[i])):
+        if mtx[i][j] % 3 == 0 and mtx[i][j] != 0:
+            számláló += 1
+print(számláló," db 3-mal tényleges osztható szám szerepel a mátrixban.")
 
 # Feltételes összegzés:
 # Határozzuk meg a páratlan számok összegét
+ptlan_összeg = 0
+for i in range(len(mtx)):
+    for j in range(len(mtx[i])):
+        if mtx[i][j] % 2 == 1:
+            ptlan_összeg += mtx[i][j]
+print("A páratlan elemek összege:", ptlan_összeg)
 
 # Bónusz:
 # Hozzunk létre egy új listát, ennek a listának az elemei a mtx sorainak a szorzatai
+lista = []
+for i in range(len(mtx)):
+    szorzat = 1
+    for j in range(len(mtx[i])):
+        if mtx[i][j] == 0:
+            szorzat = 0
+            break
+        szorzat *= mtx[i][j]
+    lista.append(szorzat)
+
+print("A számok szorzata soronként:", lista)
+
+# List comprehension
+lista = [0 for i in range(10)]
+print(lista) # [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+lista = [i**2 for i in range(1, 10)]
+print(lista) # [1, 4, 9, 16, 25, 36, 49, 64, 81]
+lista = [[] for i in range(6)]
+print(lista) # [[], [], [], [], [], []]
+lista = [[i*6 + j for j in range(6)] for i in range(4)]
+print(lista) # [[0, 1, 2, 3, 4, 5], ..., [18, 19, 20, 21, 22, 23]]
+mtx3d = [[[random.randint(-20,20) for k in range(3)] for j in range(4)] for i in range(3)]
+print(mtx3d) #[[[6, -8, 12], ..., [-7, -6, 6]],..., [[12, -8, 12], ..., [-11, 10, -2]]]
+print(mtx3d[0][1][2])
+
+# Összegzés tétele 3d mátrixra
+# Annyi ciklus kell, ahány dimenziós a mátrix
+összeg = 0
+for i in range(len(mtx3d)):
+    for j in range(len(mtx3d[i])):
+        for k in range(len(mtx3d[i][j])):
+            összeg += mtx3d[i][j][k]
+print("Összeg =", összeg)
