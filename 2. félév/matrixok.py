@@ -58,3 +58,12 @@ if feltétel:
     print("Van 7-tel osztható szám.")
 else:
     print("Nincs 7-tel osztható szám")
+
+# Megszámlálás tétele:
+# Hány elem van a mátrixban ami 3-mal osztható (De nem 0!)
+
+# Feltételes összegzés:
+# Határozzuk meg a páratlan számok összegét
+
+# Bónusz:
+# Hozzunk létre egy új listát, ennek a listának az elemei a mtx sorainak a szorzatai
