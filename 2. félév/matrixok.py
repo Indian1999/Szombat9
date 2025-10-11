@@ -1,7 +1,7 @@
 # Mátrixok
 import random
 import numpy as np         # Terminálba: pip install numpy
-import matplotlib.pyplot   # pip install matplotlib
+import matplotlib.pyplot as plt  # pip install matplotlib
 
 # Mátrix: Egy lista ami listákat tárol
 mtx = [
@@ -114,3 +114,20 @@ for i in range(len(mtx3d)):
         for k in range(len(mtx3d[i][j])):
             összeg += mtx3d[i][j][k]
 print("Összeg =", összeg)
+
+
+axes = [5,5,5]
+cubes = np.ones(axes) # 5*5*5 ös tömb, tele 1-esekkel
+# [5,5,5] + [3] = [5,5,5,3]
+colors = np.empty(axes + [3]) # 5*5*5*3-as mátrix, üres értékkekel
+
+colors[0] = [1,0,0] # Piros
+colors[1] = [0,1,0] # Zöld
+colors[2] = [0,0,1] # Kék
+colors[3] = [1,1,0] # Sárga
+colors[4] = [0,1,1] # Türkiz
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection="3d")
+ax.voxels(cubes, facecolors=colors, edgecolors="black")
+plt.show()
