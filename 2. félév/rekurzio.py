@@ -1,96 +1,97 @@
-# Azokat a függvényeket amik önmagukat hívják meg, rekurzív függvényeknek hívjuk
-# 2 dologra mindig figyeljünk:
-#   Legyen egy olyan pont, amikor a függvény már nem hívja meg önmagát
-#   Ezt a pontot érhesse is el mindenképp a függvény
+# Egy függvényt rekurzív függvénynek nevezünk, ha az meghívja önmagát.
+# Rekurzió lényege: Van egy bonyolult feladatunk és azt egy picit kevésbé bonyolult
+# részfeladattá alakítjuk, egészen addig amíg meg nem tudjuk oldani.
 
-def rekurzio(n: int):
-    if n <= 0:
+def say_hi_n_times(n):
+    if n < 1:
         return
     print("Szia!")
-    rekurzio(n-1)
+    if n > 1:
+        say_hi_n_times(n - 1)
 
-rekurzio(3)
+say_hi_n_times(2)
 
-# Faktoriális
-# 4! = 4 * 3 * 2 * 1 = 24
-# 4! = 4 * 6 = 24
-# 3! = 3 * 2 = 6
-# 2! = 2 * 1 = 2
+# n! = n * (n-1)!       (n >= 1 természetes szám)
+# 4! = 4 * 3!
+# 3! = 3 * 2!
+# 2! = 2 * 1!
 # 1! = 1
 # 0! = 1
-# n! = n * (n-1)!       (ahol n egy pozitív egész szám)
 
-def fakt(n: int) -> int:
+def fakt(n):
     if n == 1 or n == 0:
         return 1
     return n * fakt(n-1)
 
-print(fakt(6))
-print(fakt(10))
+print(fakt(5))
 
 # Rekurzív sorozatok:
-# a(n) = 3 + a(n-1)
-# a(1) = -20
-# -20, -17, -14, -11, -8, ...
+# a(n) = 7 + a(n-1)
+# a(1) = 3
+# a(n) -> 3, 10, 17, 24, 31, 38, ...
 
-def a(n: int) -> int:
+def a(n):
     if n == 1:
-        return -20
-    return 3 + a(n-1)
+        return 3
+    return 7 + a(n-1)
 
-print([a(i) for i in range(1, 11)])
+print(a(5))
 
-# b(n) = 1.1 * b(n-1) + 2
-# b(1) = 10
+# b(n) = 1.2 * b(n-1) - 3
+# b(1) = 1
 
-def b(n:int) -> float:
+def b(n):
     if n == 1:
-        return 10
-    return 1.1 * b(n-1) + 2
+        return 1
+    return 1.2 * b(n-1) - 3
 
-print([b(i) for i in range(1, 11)])
+for i in range(1, 11):
+    print(f"b({i}) = {b(i)}")
 
-# c(n) = c(n-1) + 2 * c(n-2) + 2
-# c(1) = -2
-# c(2) = 5
+# c(n) = 0.5 * c(n-1) + 0.25 * c(n-2)
+# c(1) = 0
+# c(2) = 1
+# 0, 1, 0.5, 0.5, ...
 
-def c(n:int) -> int:
+def c(n):
     if n == 1:
-        return -2
+        return 0
     if n == 2:
-        return 5
-    return c(n-1) + 2 * c(n-2) + 2
+        return 1
+    return 0.5 * c(n-1) + 0.25 * c(n-2)
 
-print([c(i) for i in range(1, 17)])
 
-# d(n) = 9 + d(n-1)
+for i in range(1, 11):
+    print(f"c({i}) = {c(i)}")
+
+# d(n) = 8 + 2 * d(n-1)
 # d(1) = -3
 
-def d(n:int)->int:
+def d(n):
     if n == 1:
         return -3
-    return 9 + d(n-1)
-
-# e(n) = e(n-1)^2
-# e(1) = -2
-
-def e(n:int)->int:
-    if n == 1:
-        return -2
-    return e(n-1)**2
-
+    return 8 + 2*d(n-1)
 
 print([d(i) for i in range(1, 11)])
-print([e(i) for i in range(1, 8)])
+
+# e(n) = e(n-1) * e(n-1) = e(n-1)^2
+# e(1) = 2
+# 2, 4, 16, 256, ...
+def e(n):
+    if n == 1:
+        return 2
+    return e(n-1)**2
+
+print(e(10))
 
 # fib(n) = fib(n-1) + fib(n-2)
 # fib(1) = fib(2) = 1
-# 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
+# 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...
 
 from functools import cache
 
 @cache
-def fib(n:int)-> int:
+def fib(n):
     if n == 1 or n == 2:
         return 1
     return fib(n-1) + fib(n-2)
@@ -98,32 +99,33 @@ def fib(n:int)-> int:
 i = 1
 while True:
     print(f"fib({i}) digit count = {len(str(fib(i)))}")
+    i += 1
     if i > 20:
         break
-    i += 1
 
-call_counter = 0
+# Készítsünk egy rekurzív hatványozó függvényt!
+# power(2, 10) = 1024
+# 2^5 = 2 * 2^4
 
-def double_recursion(n: int):
-    global call_counter
-    call_counter += 1
-    if n == 0:
-        return
-    double_recursion(n-1)
-    double_recursion(n-1)
-
-@cache
-def double_recursion_cached(n: int):
-    global call_counter
-    call_counter += 1
-    if n == 0:
+def power(a, b):
+    if a == 0 and b == 0: # 0^0 -> UNDEFINED
+        return "ERROR"
+    if b == 0:
         return 1
-    double_recursion_cached(n-1)
-    double_recursion_cached(n-1)
+    if a == 0:
+        return 0
+    return a * power(a, b-1)
 
-double_recursion(25)
-print(f"A double_recursion függvény {call_counter} függvényhívást hajtott végre...")
+print(power(2, 10))
+print(power(2, 0))
+print(power(0, 4))
+print(power(0, 0))
 
-call_counter = 0
-double_recursion_cached(25)
-print(f"A double_recursion_cached függvény {call_counter} függvényhívást hajtott végre...")
+# Egy rekurzív függvényt írjunk, ami meghatározza egy lista összegét
+
+def rek_sum(lista):
+    if len(lista) == 0:
+        return 0
+    return lista[0] + rek_sum(lista[1:])
+
+print(rek_sum([5,8,3,1,5,8,5,3,1,5]))
