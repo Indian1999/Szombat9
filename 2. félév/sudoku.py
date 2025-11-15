@@ -9,3 +9,10 @@ board = [
     [1, 2, 0, 0, 0, 7, 4, 0, 0],
     [0, 4, 9, 2, 0, 6, 0, 0, 7]
 ]
+
+def print_board(board):
+    for row in board:
+        print(row)
+
+print_board(board)
+print("■")
