@@ -25,10 +25,44 @@ def solve(board):
     empty = find_empty(board)
     if empty == None:
         return True
+    row = empty[0]
+    col = empty[1]
+    for num in range(1, 10):
+        if valid(board, num, row, col):
+            board[row][col] = num
+            if solve(board):
+                return True
+            board[row][col] = 0
+    return False
     
+def valid(board, num, row, col):
+    # Sorok ellenőrzése
+    for i in range(len(board[row])):
+        if board[row][i] == num:
+            return False
+        
+    # Oszlopok ellenőrzése
+    for i in range(len(board)):
+        if board[i][col] == num:
+            return False
+        
+    # Kis négyzetek ellenőrzése
+    small_row = row // 3 * 3
+    small_col = col // 3 * 3
+    for i in range(small_row, small_row + 3):
+        for j in range(small_col, small_col + 3):
+            if board[i][j] == num:
+                return False
+    
+    return True
+
     
 def find_empty(board):
-    pass
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == 0:
+                return [i, j]
+    return None
     
 
 print_board(board)
