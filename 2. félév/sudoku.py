@@ -11,8 +11,27 @@ board = [
 ]
 
 def print_board(board):
-    for row in board:
-        print(row)
+    for i in range(len(board)):
+        if i % 3 == 0:
+            print("■ " * 13)
+        for j in range(len(board[i])):
+            if j % 3 == 0:
+                print("■ ", end="")
+            print(board[i][j], end = " ")
+        print("■")
+    print("■ " * 13)
+
+def solve(board):
+    empty = find_empty(board)
+    if empty == None:
+        return True
+    
+    
+def find_empty(board):
+    pass
+    
 
 print_board(board)
-print("■")
+solve(board)
+print("Megoldás:")
+print_board(board)
