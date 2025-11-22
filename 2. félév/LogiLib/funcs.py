@@ -80,3 +80,30 @@ def count_vowels(string: str) -> int:
         if char.lower() in vowels:
              counter += 1
     return counter
+
+def is_leap_year(year: int) -> bool:    
+    """
+    Ellenőrzi, hogy egy adott év szökőév-e.
+
+    Args:
+        year (int): Az évszám.
+
+    Raises:
+        TypeError: Ha a year paraméter nem egész szám.
+
+    Returns:
+        bool: True, ha az év szökőév, különben False.
+    """
+    
+    if type(year) != int:
+        raise TypeError("A year mindenképp egész szám kell, hogy legyen!")
+    if year % 4 == 0:
+        if year % 100 == 0:
+            if year % 400 == 0:
+                return True
+            else:
+                return False
+        else:
+            return True
+    else:
+        return False
