@@ -1,2 +1,3 @@
 # Ez a script akkor fut le, amikor beimportáljuk a LogiLib-et
-print("LogiLib importálva!")
+from . import constants
+from . import funcs
