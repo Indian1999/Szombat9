@@ -26,12 +26,6 @@ def create_matrix(n: int, m: int, value: any = 0) -> list[list[any]]:
         mtx.append(lista)
     return mtx
 
-# Feladat: Készíts egy faktoriális függvényt!
-# 1 egész szám típusú paramétert kap, 1 egész számot ad vissza
-# Ha nem egész számot kapott paraméterben -> TypeError
-# Ha egész szám, de kisebb, mint 0        -> ValueError
-# Visszaadja a szám faktoriális értékét
-# A fóggvényhez készítsd leírást is!
 def factorial(n: int) -> int:
     """
     Visszaadja n faktoriálisát.
@@ -51,12 +45,6 @@ def factorial(n: int) -> int:
     for i in range(n, 0, -1):
             factorial *= i
     return factorial
-
-
-# Írjunk egy függvényt ami megkap egy stringet és visszaadja, hogy hány darab magánhangzó
-# található a stringben (int) (:str)
-# Figyeljünk hogy kis és nagybetűkre is működjön
-# Írjunk leírást a függvényhez
 
 def count_vowels(string: str) -> int:    
     """
@@ -107,3 +95,27 @@ def is_leap_year(year: int) -> bool:
             return True
     else:
         return False
+
+def n_alatt_a_k(n: int, k: int) -> int:    
+    """
+    Kiszámítja az "n alatt a k" értékét (kombinációk száma).
+
+    Args:
+        n (int): Az elemek teljes száma.
+        k (int): A kiválasztott elemek száma.
+
+    Raises:
+        TypeError: Ha n vagy k nem egész szám.
+        ValueError: Ha n vagy k negatív.
+
+    Returns:
+        int: Az "n alatt a k" értéke.
+    """
+    
+    if type(n) != int or type(k) != int:
+        raise TypeError
+    if n < 0 or k < 0:
+        raise ValueError
+    return factorial(n) // (factorial(k) * factorial(n-k))
+
+print(n_alatt_a_k(90, 5))
