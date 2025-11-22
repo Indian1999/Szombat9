@@ -26,3 +26,57 @@ def create_matrix(n: int, m: int, value: any = 0) -> list[list[any]]:
         mtx.append(lista)
     return mtx
 
+# Feladat: Készíts egy faktoriális függvényt!
+# 1 egész szám típusú paramétert kap, 1 egész számot ad vissza
+# Ha nem egész számot kapott paraméterben -> TypeError
+# Ha egész szám, de kisebb, mint 0        -> ValueError
+# Visszaadja a szám faktoriális értékét
+# A fóggvényhez készítsd leírást is!
+def factorial(n: int) -> int:
+    """
+    Visszaadja n faktoriálisát.
+    Args:
+            n (int): A szám
+    Raises:
+            Type: Ha nem egész szám
+            Value: Ha nem pozitív
+    Returns:
+            factorial, a szám faktoriálisa
+    """
+    if type(n) != int:
+            raise TypeError("Egész szám lehet csak az n!")
+    if n < 0:
+            raise ValueError("Csak pozitív szám lehet az n!")
+    factorial = 1
+    for i in range(n, 0, -1):
+            factorial *= i
+    return factorial
+
+
+# Írjunk egy függvényt ami megkap egy stringet és visszaadja, hogy hány darab magánhangzó
+# található a stringben (int) (:str)
+# Figyeljünk hogy kis és nagybetűkre is működjön
+# Írjunk leírást a függvényhez
+
+def count_vowels(string: str) -> int:    
+    """
+    Megszámolja a magánhangzókat egy adott stringben.
+
+    Args:
+        string (str): A bemeneti string.
+
+    Raises:
+        TypeError: Ha a bemenet nem string.
+
+    Returns:
+        int: A magánhangzók száma a stringben.
+    """
+    
+    if type(string) != str:
+         raise TypeError("A string paraméternek string típusúnak kell lennie!")
+    counter = 0
+    vowels = "öüóűúőoiueáéaí"
+    for char in string:
+        if char.lower() in vowels:
+             counter += 1
+    return counter

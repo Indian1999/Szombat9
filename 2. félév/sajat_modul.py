@@ -8,3 +8,7 @@ from LogiLib.constants import tau
 print(tau)
 
 print(LogiLib.funcs.create_matrix(3, 4, 5))
+
+from LogiLib.funcs import factorial
+
+print(factorial(0))
