@@ -82,7 +82,36 @@ pontok = [
     (-22, 48), (36, -5), (-12, -17), (50, -50), (-29, 27)
 ]
 
-# a, Melyik pont van legközelebb az origóhoz?
+def distance_to_origin(tuple):
+    return ( tuple[0]**2 + tuple[1]**2 ) ** 0.5
 
-# b, Kérjünk be egy pontot, adjuk meg, a hozzá legközelebbi pontot
+# a, Melyik pont van legközelebb az origóhoz?
+mini = 0
+min_value = distance_to_origin(pontok[0])
+for i in range(1, len(pontok)):
+    if distance_to_origin(pontok[i]) < min_value:
+        mini = i
+        min_value = distance_to_origin(pontok[i])
+
+print(f"A legközelebbi pont az origóhoz: {pontok[mini]}, {min_value} távolságra van.")
+
+# b, Kérjünk be egy pontot, adjuk meg, a hozzá legtávolabbi pontot
+def distance(pont1, pont2):
+    x = pont1[0] - pont2[0]
+    y = pont1[1] - pont2[1]
+    return (x**2 + y**2) ** 0.5
+
+pont = (50, -42)
+
+maxi = 0
+max_value = distance(pontok[0], pont)
+for i in range(1, len(pontok)):
+    if distance(pontok[i], pont) > max_value:
+        maxi = i
+        max_value = distance(pontok[i], pont)
+
+
+print(f"A legközelebbi pont a {pont} ponthoz: {pontok[maxi]}, {max_value} távolságra van.")
+
+
 
