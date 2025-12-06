@@ -117,5 +117,3 @@ def n_alatt_a_k(n: int, k: int) -> int:
     if n < 0 or k < 0:
         raise ValueError
     return factorial(n) // (factorial(k) * factorial(n-k))
-
-print(n_alatt_a_k(90, 5))
