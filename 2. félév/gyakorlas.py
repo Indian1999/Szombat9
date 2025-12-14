@@ -1,0 +1,53 @@
+# Írjunk egy olyan függvényt ami összeszorozza egy lista összes elemét
+
+def mult_list(lista):
+    szorzat = 1
+    for item in lista:
+        szorzat *= item
+    return szorzat
+
+# Most legyen ugyan ez, rekurzívan
+
+def mult_list_rek(lista):
+    if len(lista) == 0:
+        return 1
+    return lista[0] * mult_list_rek(lista[1:])
+
+print(mult_list([3, 3, 7, 2, 11]))
+print(mult_list_rek([3, 3, 7, 2, 11]))
+
+# Határozzzuk meg, hogy a labirintus egyes pontjaiba hány lépésből tud eljutni a játékos
+
+
+def find_start_pos(map):
+    for i in range(len(map)):
+        for j in range(len(map[i])):
+            if map[i][j] == "^":
+                return (i, j)
+    return None
+map = [
+    [".",".",".",".","#",".","#","#",".","."],
+    [".","#","#",".",".",".",".",".",".","#"],
+    [".",".","#",".","#","#","#","#","#","#"],
+    ["#","#","#",".",".",".",".",".",".","."],
+    [".",".",".",".",".",".",".","#","#","."],
+    [".",".",".",".",".","#",".",".","#","."],
+    [".","#",".",".","^","#",".",".","#","."],
+    ["#","#","#","#",".",".",".","#","#","."],
+    ["#",".",".","#",".",".",".",".",".","."],
+    [".",".",".",".",".",".","#",".",".","."]
+    ]
+
+tavolsagok = [[float("inf") for j in range(len(map[i]))] for i in range(len(map))]
+start_pos = find_start_pos(map)
+tavolsagok[start_pos[0]][start_pos[1]]
+
+def find_distances(i, j):
+    if i > 0 and tavolsagok[i-1][j] < tavolsagok[i][j] + 1:
+        tavolsagok[i][j] = tavolsagok[i-1][j]
+    if i < len(tavolsagok) - 1 and tavolsagok[i+1][j] < tavolsagok[i][j] + 1:
+        tavolsagok[i][j] = tavolsagok[i+1][j]
+    if j > 0 and tavolsagok[i][j-1] < tavolsagok[i][j] + 1:
+        tavolsagok[i][j] = tavolsagok[i][j-1] + 1
+    if j < len(tavolsagok[0]) - 1 and tavolsagok[i][j+1] < tavolsagok[i][j] + 1:
+        tavolsagok[i][j] = tavolsagok[i][j+1] + 1
