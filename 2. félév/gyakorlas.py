@@ -74,5 +74,7 @@ for i in range(len(tavolsagok)):
     for j in range(len(tavolsagok[i])):
         if tavolsagok[i][j] != float("inf"):
             plt.text(j, i, tavolsagok[i][j], ha = "center", va = "center")
-
-plt.show()
+plt.axis("off") # kikapcsolja a koordináta tengelyeket
+plt.title("Labirintus legkisebb lépésszámok")
+plt.savefig("map.png")
+plt.close()
