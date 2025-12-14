@@ -40,14 +40,31 @@ map = [
 
 tavolsagok = [[float("inf") for j in range(len(map[i]))] for i in range(len(map))]
 start_pos = find_start_pos(map)
-tavolsagok[start_pos[0]][start_pos[1]]
+tavolsagok[start_pos[0]][start_pos[1]] = 0
 
 def find_distances(i, j):
+    # Az aktuális poz értékét átírjuk, ha találunk jobbat
     if i > 0 and tavolsagok[i-1][j] < tavolsagok[i][j] + 1:
-        tavolsagok[i][j] = tavolsagok[i-1][j]
+        tavolsagok[i][j] = tavolsagok[i-1][j] + 1
     if i < len(tavolsagok) - 1 and tavolsagok[i+1][j] < tavolsagok[i][j] + 1:
-        tavolsagok[i][j] = tavolsagok[i+1][j]
+        tavolsagok[i][j] = tavolsagok[i+1][j] + 1
     if j > 0 and tavolsagok[i][j-1] < tavolsagok[i][j] + 1:
         tavolsagok[i][j] = tavolsagok[i][j-1] + 1
     if j < len(tavolsagok[0]) - 1 and tavolsagok[i][j+1] < tavolsagok[i][j] + 1:
         tavolsagok[i][j] = tavolsagok[i][j+1] + 1
+    # Megyünk tovább a szomszédos mezőkre
+    if i > 0 and map[i-1][j] == "." and tavolsagok[i-1][j] > tavolsagok[i][j] + 1:
+        find_distances(i-1, j)
+    if i < len(map) - 1 and map[i+1][j] == "." and tavolsagok[i+1][j] > tavolsagok[i][j] + 1:
+        find_distances(i+1, j)
+    if j > 0 and map[i][j-1] == "." and tavolsagok[i][j-1] > tavolsagok[i][j] + 1:
+        find_distances(i, j-1)
+    if j < len(map[0]) - 1 and map[i][j+1] == "." and tavolsagok[i][j+1] > tavolsagok[i][j] + 1:
+        find_distances(i, j+1)
+
+# start_pos = (8, 7)
+# *start_pos = 8, 7    (*: kicsomagoló operátor)
+find_distances(*start_pos)
+for row in tavolsagok:
+    print(row)
+    
