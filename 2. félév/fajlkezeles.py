@@ -36,3 +36,11 @@ with open(path_homerseklet, "r", encoding="utf-8") as f:
 with open(path_homerseklet, "r", encoding="utf-8") as f:
     for sor in f:
        print([sor])
+
+# Feladat: Olvassuk be és tároljuk el egy megfelelő adatszerkezetben a pontok.txt
+# fájl tartalmát
+# Két pont távolsága: ((x1-x2)**2 + (y1-y2)**2 + (z1-z2)**2) ** 0.5
+
+# a, Írjuk ki azt a pontot amelyik a legtávolabb van az origótól (0,0,0)
+
+# b, Írjuk ki azt a 2 pontot amelyek a legközelebb vannak egymáshoz
