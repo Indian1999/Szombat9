@@ -1,0 +1,3 @@
+Az origótól legtávolabbi pont a [941, 993, 340], 1409.66 egység távolságra van az origótól.
+Az egymáshoz legközelebb lévő két pont a: [162, 817, 812] és [425, 690, 689], 316.9 egység távolságra vannak egymástól.
+Ide írok még valamit...
