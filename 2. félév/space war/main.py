@@ -25,14 +25,6 @@ YELLOW_SPACESHIP = pygame.transform.rotate(YELLOW_SPACESHIP, 90)
 BACKGROUND = pygame.image.load(os.path.join(ASSETS, "space.png"))
 BACKGROUND = pygame.transform.scale(BACKGROUND, (WIDTH, HEIGHT))
 
-def draw_frame(red, yellow):
-    WINDOW.blit(BACKGROUND, (0,0))
-
-    WINDOW.blit(RED_SPACESHIP, (red.x, red.y))
-    WINDOW.blit(YELLOW_SPACESHIP, (yellow.x, yellow.y))
-
-    pygame.display.update()
-
 def red_control(red):
     keys_pressed = pygame.key.get_pressed()
     if keys_pressed[pygame.K_a] and red.x > 0:
@@ -54,6 +46,30 @@ def yellow_control(yellow):
         yellow.y -= VELOCITY
     if keys_pressed[pygame.K_DOWN] and yellow.y < HEIGHT - SPACESHIP_HEIGHT:
         yellow.y += VELOCITY
+
+def draw_frame(red, yellow, red_bullets, yellow_bullets):
+    WINDOW.blit(BACKGROUND, (0,0))
+
+    WINDOW.blit(RED_SPACESHIP, (red.x, red.y))
+    WINDOW.blit(YELLOW_SPACESHIP, (yellow.x, yellow.y))
+
+    for bullet in red_bullets:
+        pygame.draw.rect(WINDOW, (255, 0, 0), bullet)
+    for bullet in yellow_bullets:
+        pygame.draw.rect(WINDOW, (255, 255, 0), bullet)
+
+    pygame.display.update()
+
+def handle_bullets(red_bullets, yellow_bullets, red, yellow):
+    for bullet in red_bullets:
+        bullet.x += VELOCITY + 2
+        if bullet.colliderect(yellow):
+            pass
+
+    for bullet in yellow_bullets:
+        bullet.x -= (VELOCITY + 2)
+        if bullet.colliderect(red):
+            pass
 
 def main():
     red = pygame.Rect(20, HEIGHT // 2 - SPACESHIP_HEIGHT // 2, 
@@ -78,15 +94,15 @@ def main():
                 if event.key == pygame.K_LCTRL:
                     bullet = pygame.Rect(
                         red.x + SPACESHIP_WIDTH,
-                        red.y - SPACESHIP_HEIGHT // 2, 10, 5
+                        red.y + SPACESHIP_HEIGHT // 2, 10, 5
                     )
                     red_bullets.append(bullet)
                 if event.key == pygame.K_RCTRL:
                     bullet = pygame.Rect(
                         yellow.x - 10,
-                        yellow.y - SPACESHIP_HEIGHT // 2, 10, 5
+                        yellow.y + SPACESHIP_HEIGHT // 2, 10, 5
                     )
-                    red_bullets.append(bullet)
+                    yellow_bullets.append(bullet)
         red_control(red)
         yellow_control(yellow)
         handle_bullets(red_bullets, yellow_bullets, red, yellow)
