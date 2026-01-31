@@ -61,6 +61,9 @@ def main():
     yellow = pygame.Rect(WIDTH - 20 - SPACESHIP_WIDTH, HEIGHT // 2 - SPACESHIP_HEIGHT // 2, 
                         SPACESHIP_WIDTH, SPACESHIP_HEIGHT)
     
+    red_bullets = []
+    yellow_bullets = []
+    
     gameOn = True
     clock = pygame.time.Clock()
     while gameOn:
@@ -71,9 +74,23 @@ def main():
                 gameOn = False
                 pygame.quit()
                 exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LCTRL:
+                    bullet = pygame.Rect(
+                        red.x + SPACESHIP_WIDTH,
+                        red.y - SPACESHIP_HEIGHT // 2, 10, 5
+                    )
+                    red_bullets.append(bullet)
+                if event.key == pygame.K_RCTRL:
+                    bullet = pygame.Rect(
+                        yellow.x - 10,
+                        yellow.y - SPACESHIP_HEIGHT // 2, 10, 5
+                    )
+                    red_bullets.append(bullet)
         red_control(red)
         yellow_control(yellow)
-        draw_frame(red, yellow)
+        handle_bullets(red_bullets, yellow_bullets, red, yellow)
+        draw_frame(red, yellow, red_bullets, yellow_bullets)
 
 if __name__ == "__main__":
     main()
