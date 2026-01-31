@@ -14,6 +14,9 @@ ASSETS = os.path.join(os.path.dirname(__file__), "assets")
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Space War!")
 
+RED_HIT = pygame.USEREVENT + 1
+YELLOW_HIT = pygame.USEREVENT + 2
+
 RED_SPACESHIP = pygame.image.load(os.path.join(ASSETS, "spaceship_red.png"))
 RED_SPACESHIP = pygame.transform.scale(RED_SPACESHIP, (SPACESHIP_WIDTH, SPACESHIP_HEIGHT))
 RED_SPACESHIP = pygame.transform.rotate(RED_SPACESHIP, 270)
@@ -47,7 +50,7 @@ def yellow_control(yellow):
     if keys_pressed[pygame.K_DOWN] and yellow.y < HEIGHT - SPACESHIP_HEIGHT:
         yellow.y += VELOCITY
 
-def draw_frame(red, yellow, red_bullets, yellow_bullets):
+def draw_frame(red, yellow, red_bullets, yellow_bullets, red_health, yellow_health):
     WINDOW.blit(BACKGROUND, (0,0))
 
     WINDOW.blit(RED_SPACESHIP, (red.x, red.y))
@@ -58,18 +61,31 @@ def draw_frame(red, yellow, red_bullets, yellow_bullets):
     for bullet in yellow_bullets:
         pygame.draw.rect(WINDOW, (255, 255, 0), bullet)
 
+    font = pygame.font.SysFont("Arial", 40)
+    # windows + .
+    red_text = font.render(f"❤️: {red_health}", True, (255, 255, 255))
+    yellow_text = font.render(f"❤️: {yellow_health}", True, (255, 255, 255))
+    WINDOW.blit(red_text, (10, 10))
+    WINDOW.blit(yellow_text, (WIDTH - yellow_text.get_width() - 10, 10))
+
     pygame.display.update()
 
 def handle_bullets(red_bullets, yellow_bullets, red, yellow):
     for bullet in red_bullets:
         bullet.x += VELOCITY + 2
+        if bullet.x > WIDTH + 50:
+            red_bullets.remove(bullet)
         if bullet.colliderect(yellow):
-            pass
+            pygame.event.post(pygame.event.Event(YELLOW_HIT))
+            red_bullets.remove(bullet)
 
     for bullet in yellow_bullets:
         bullet.x -= (VELOCITY + 2)
         if bullet.colliderect(red):
-            pass
+            pygame.event.post(pygame.event.Event(RED_HIT))
+            yellow_bullets.remove(bullet)
+        if bullet.x < -50:
+            yellow_bullets.remove(bullet)
 
 def main():
     red = pygame.Rect(20, HEIGHT // 2 - SPACESHIP_HEIGHT // 2, 
@@ -79,6 +95,9 @@ def main():
     
     red_bullets = []
     yellow_bullets = []
+
+    red_health = 10
+    yellow_health = 10
     
     gameOn = True
     clock = pygame.time.Clock()
@@ -103,10 +122,15 @@ def main():
                         yellow.y + SPACESHIP_HEIGHT // 2, 10, 5
                     )
                     yellow_bullets.append(bullet)
+            if event.type == RED_HIT:
+                red_health -= 1
+            if event.type == YELLOW_HIT:
+                yellow_health -= 1
+
         red_control(red)
         yellow_control(yellow)
         handle_bullets(red_bullets, yellow_bullets, red, yellow)
-        draw_frame(red, yellow, red_bullets, yellow_bullets)
+        draw_frame(red, yellow, red_bullets, yellow_bullets, red_health, yellow_health)
 
 if __name__ == "__main__":
     main()
