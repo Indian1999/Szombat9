@@ -99,7 +99,26 @@ with open(path, encoding="utf-8") as f:
     szöveg = szöveg.replace("'ve", " have")
     szöveg = szöveg.replace("'ll", " will")
     szöveg = szöveg.replace("'", "")
+    while "  " in szöveg:
+        szöveg = szöveg.replace("  ", " ")
+    szöveg = szöveg.strip()
+    szöveg = szöveg.lower()
+    szöveg = szöveg.split(" ")
 
+word_counter = {}
+for word in szöveg:
+    if word in word_counter:
+        word_counter[word] += 1
+    else:
+        word_counter[word] = 1
 
+word_counter = list(word_counter.items())
+# x = ('all', 8)     x[1] = 8
+word_counter.sort(key=lambda x: x[1], reverse=True)
+word_counter = dict(word_counter)
+print(word_counter)
 
-print([szöveg])
+lista = [6,3,7,32,6,57,8,4,34,6]
+lista.sort(key = lambda x: x//10 + x%10)
+print(lista)
+
