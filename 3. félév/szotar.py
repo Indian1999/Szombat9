@@ -1,3 +1,4 @@
+import os
 # Szótárak (dictionary adatszerkezet)
 
 szotar = {} # Üres dictionary
@@ -75,3 +76,30 @@ if "bögre" in szotar.keys():
     print("Van benne bögre")
 else:
     print("Nincs benne bögre")
+
+
+# Feladat: Számoljuk meg, hogy melyik szó hányszor szerepel a story.txt-ben
+
+path = os.path.join(os.path.dirname(__file__), "forras", "story.txt")
+print(path)
+
+with open(path, encoding="utf-8") as f:
+    szöveg = f.read()
+    szöveg = szöveg.replace(".", "")
+    szöveg = szöveg.replace("…", "")
+    szöveg = szöveg.replace(",", "")
+    szöveg = szöveg.replace(":", "")
+    szöveg = szöveg.replace("?", "")
+    szöveg = szöveg.replace("!", "")
+    szöveg = szöveg.replace("'s", "")
+    szöveg = szöveg.replace("\n", " ")
+    szöveg = szöveg.replace("–", "")
+    szöveg = szöveg.replace("n't", " not")
+    szöveg = szöveg.replace("'re", " are")
+    szöveg = szöveg.replace("'ve", " have")
+    szöveg = szöveg.replace("'ll", " will")
+    szöveg = szöveg.replace("'", "")
+
+
+
+print([szöveg])
