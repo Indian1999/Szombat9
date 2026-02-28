@@ -68,7 +68,7 @@ class CicaError(Exception):
     def __init__(self, message):
         super().__init__(f"{message}")
 
-raise CicaError("Hát ez egy cica hiba...")
+#raise CicaError("Hát ez egy cica hiba...")
 
 
 # 1. feladat: Írjunk egy függvényt amely paraméterben megkap egy évszámot.
@@ -77,6 +77,26 @@ raise CicaError("Hát ez egy cica hiba...")
 # Az egyáb lehetséges hibákat is kezeld le.
 
 # 1. b: Írj egy programot amely meghívja ezt a függvényt, és a lehetséges hibákat is lekezeli
+
+def elapsed_years(year):
+    if not isinstance(year, int):
+        raise TypeError(f"Az évszámnak egész számnak kell lennie, ehelyett {year} ({type(year)}-t kaptam.)")
+    if year > 2026:
+        raise ValueError(f"Jövőbeli évszámot ne adj meg. {year}-t kaptam. A year legyen kisebb mint 2026!")
+    return 2026 - year
+
+try:
+    print(elapsed_years(2000))
+    print(elapsed_years(-2000))
+    #print(elapsed_years(342.3))
+    #print(elapsed_years(3242))
+    print(elapsed_years("cica"))
+except TypeError as ex:
+    print("Típus hiba:", ex)
+except ValueError as ex:
+    print("Érték hiba:", ex)
+except Exception as ex:
+    print("Ismeretlen hiba:", ex)
 
 
 # 2. feladat: Írj egy függvényt ami megkap paraméterben egy iterálható objektumot (végig lehet menni rajta for ciklusssal)
