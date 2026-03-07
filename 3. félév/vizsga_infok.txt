@@ -1,0 +1,95 @@
+A Logiscool Python vizsga az Python Institute PCEP vizsgán alapszik
+
+35 teszt kérdés, 60 perc áll rendelkezésre
+
+Kérdések:
+felelet választós (4 ből 1 helyes válasz)
+Több helyes válasz
+Kódkiegészítés
+Drag & Drop (párosítás, sorbarendezés)
+
+Ha minimum 51% megvan, akkor megvan a vizsga
+A logiscoolos ingyenes, de jelentkezni kell
+Ha nincs meg, lehet később újra próbálkozni
+
+Témakörök:
+
+1. Alap koncepciók (5 kérdés):
+    Literálok: logikai, egész, float, string értékek (pl.: 15 egy literál)
+    kommentek, print, input
+    aritmetikai operátorok (+, -, *, /, %, //, **)
+    operátorok stringekre (+, *)
+    értékadó operátorok (=, +=, *=, stb.)
+    python alap tulajdonságai, indentálás, kulcsszavak
+    Interpreter/Compiler
+
+A compiler lefordítja a programkódot byte-kódra, majd futtathatjuk a programot (exe)
+Az Interpreter az egyből futtatja a programot, és futási időben. sorról sorra, fordít.
+A python egy interpretált nyelv.
+
+2. Típusok, kiértékelés (6 kérdés):
+    int, float, bool, str
+    logikai operátorok (and, or, not)
+    logikai kifejezés
+    Relációs operátorok (==, !=, >, >=, <, <=)
+    A float-ok pontossága (pontatlansága)
+    print formázása (f"", end="", sep="")
+    stringek kezelése (lower, count, split, strip, stb.)
+    Bit szintű operátorok (|, &, <<, >>, ^, ~)
+    Számrendszerek (2-es, 16-os, 8-as, 10-es)
+
+3. Vezérlési elemek (6 kérdés):
+    ciklusok (for, while)
+    elágazások (if, elif, else)
+    range()
+    Ezek egymásba ágyazása
+    Ciklusok else ága (Akkor fut le ha NEM break-kel léptünk ki)
+    Ciklusvezérlők (break, continue)
+
+4. Adatszerkezetek (7 kérdés):
+    lista, tuple, halmaz (set), dictionary
+    append(), sort(), sorted(), len(), insert(), keys(), items(), stb.
+    mátrixok (listák listája)
+    slicingolós indexelés (lista[2:9], lista[3:17:2])
+    negatív indexelés (lista[-2])
+    string műveletek, "\" escape karakter (backslash)
+
+5. Függvények, hibakezelés (6 kérdés):
+    Függvény definíció (def)
+    return, yield
+    Rekurzív Függvények
+    Függvények argumentumai/paraméterei
+    Pozícionális/kulcsszavas paraméterek
+    try-except-finally
+    TypeError, ValueError, ZeroDivisionError, stb.
+
+Egy-egy kérdésben felbukkanhatnak ( de csak a logiscoolos-on):
+    fájlkezelés, txt, csv fájlok
+    libraryk, modulok (import)
+    alap modulok (math, random, os)
+    Külső könyvtárak (numpy, pandas, matplotlib, pygame)
+
+
+Gyakorló kérdések:
+kviz.hauerszabolcs.hu
+
+
+
+
+
+
+
+
+
+Floatok pontossága:
+
+>>> x = 0.6
+>>> print(x)
+0.6
+>>> y = 0.2 + 0.2 + 0.2
+>>> print(x == y)
+False
+>>> print(x, y)
+0.6 0.6000000000000001
+
+0.6000000000000001 -> 0.6000000000000004
