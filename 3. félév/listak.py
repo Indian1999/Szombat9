@@ -129,7 +129,35 @@ print(lista)
 
 # 5. feladat: Generáljunk egy táblázatot ami 2 kockával való dobásnak a lehetséges eredményeit tartalmazza.
 # (Ha 2 kockával dobunk akkor a dobás eredménye a 2 szám összege)
+matrix = [[i+j for j in range(1,7)] for i in range(1,7)]
+for row in matrix:
+    print(row)
 
 # 5.b: Mekkora a valószínűsége annak, hogy 9-et dobok?
+szamlalo = 0
+for i in range(len(matrix)):
+    for j in range(len(matrix[i])):
+        if matrix[i][j] == 9:
+            szamlalo += 1
+
+print(f"A 9-es dobásnak a valószínúsége: {round(szamlalo/36*100,2)}%")
 
 # 5.c: Melyik számnak a legnagyobb a valószínűsége?
+gyakorisagok = {}
+for i in range(len(matrix)):
+    for j in range(len(matrix[i])):
+        if matrix[i][j] not in gyakorisagok.keys():
+            gyakorisagok[matrix[i][j]] = 1
+        else:
+            gyakorisagok[matrix[i][j]] += 1
+
+print(gyakorisagok)
+
+max_key = 2
+
+for key in gyakorisagok.keys():
+    if gyakorisagok[key] > gyakorisagok[max_key]:
+        max_key = key
+
+print(f"A {max_key}-es dobásnak a legnagyobb a valószínűsége, {round(gyakorisagok[max_key] / 36 *100, 2)} %")
+
