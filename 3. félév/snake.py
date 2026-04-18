@@ -1,5 +1,6 @@
 import pygame # pip install pygame (terminálba)
 import random
+pygame.font.init()
 
 class Food:
     def __init__(self, pixel_size, xlim, ylim):
@@ -9,12 +10,11 @@ class Food:
         self.random_pos()
 
     def random_pos(self):
-        self.xpos = random.randint(0, self.xlim-self.pixel_size)
-        self.ypos = random.randint(0, self.ylim-self.pixel_size)
+        self.xpos = random.randint(0, self.xlim-self.pixel_size) // self.pixel_size * self.pixel_size
+        self.ypos = random.randint(0, self.ylim-self.pixel_size) // self.pixel_size * self.pixel_size
 
     def draw(self, surf, color):
         pygame.draw.rect(surf, color, pygame.Rect(self.xpos, self.ypos, self.pixel_size, self.pixel_size))
-
 
 class Snake:
     def __init__(self, x, y, speed, xlim, ylim):
@@ -63,10 +63,16 @@ class Snake:
         for pixel in self.body:
             pygame.draw.rect(surf, color, pygame.Rect(pixel[0], pixel[1], self.speed, self.speed))
 
+    def is_touching(self, food):
+        if self.x == food.xpos and self.y == food.ypos:
+            return True
+        return False
+
 class Game:
     BACKGROUND_COLOR = (123, 78, 67)
     SNAKE_COLOR = (0,0,0)
     FOOD_COLOR = (15, 218, 31)
+    SNAKE_FONT = pygame.font.SysFont("Arial", 30)
 
     #Konstruktór
     def __init__(self, rows = 12, cols = 15, pixel_size = 30, fps = 10):
@@ -88,6 +94,21 @@ class Game:
 
         pygame.display.update()
 
+    def draw_game_over(self):
+        self.window.fill(Game.BACKGROUND_COLOR)
+
+        info_text = Game.SNAKE_FONT.render("Q: Quit Game | R: New Game", True, (200, 20, 20))
+        score_text = Game.SNAKE_FONT.render(f"Score: {self.snake.length - 1}", True, (255, 255, 255))
+        x = self.width // 2 - info_text.get_width() // 2
+        y = 10
+        self.window.blit(info_text, (x, y))
+        x = self.width // 2 - score_text.get_width() // 2
+        y += info_text.get_height()
+        self.window.blit(score_text, (x, y))
+
+        pygame.display.update()
+
+
     def run(self):
         game_over = False
         app_close = False
@@ -103,11 +124,26 @@ class Game:
         self.food = Food(self.pixel_size, self.width, self.height)
 
         while not app_close:
+            self.fps = self.snake.length // 5 + 5
             self.clock.tick(self.fps)
+
+            while game_over:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        quit()
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_q:
+                            pygame.quit()
+                            quit()
+                        if event.key == pygame.K_r:
+                            self.run()
+                        
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    return
+                    pygame.quit()
+                    quit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_LEFT:
                         self.snake.set_direction("left")
@@ -119,10 +155,15 @@ class Game:
                         self.snake.set_direction("down")
             
             self.snake.move()
+
             if self.snake.is_dead:
                 game_over = True
+                self.draw_game_over()
                 continue
-            # Felevett-e egy kaját
+
+            if self.snake.is_touching(self.food):
+                self.snake.length += 1
+                self.food.random_pos()
 
             self.draw_frame()
 
