@@ -2,7 +2,10 @@ import pygame # pip install pygame (terminálba)
 import random
 
 class Food:
-    def __init__(self, x, y, pixel_size, xlim, ylim):
+    def __init__(self, pixel_size, xlim, ylim):
+        self.pixel_size = pixel_size
+        self.xlim = xlim
+        self.ylim = ylim
         self.random_pos()
 
     def random_pos(self):
@@ -81,6 +84,7 @@ class Game:
         self.window.fill(Game.BACKGROUND_COLOR)
 
         self.snake.draw(self.window, Game.SNAKE_COLOR)
+        self.food.draw(self.window, Game.FOOD_COLOR)
 
         pygame.display.update()
 
@@ -95,6 +99,8 @@ class Game:
             xlim = self.width, 
             ylim = self.height
         )
+
+        self.food = Food(self.pixel_size, self.width, self.height)
 
         while not app_close:
             self.clock.tick(self.fps)
