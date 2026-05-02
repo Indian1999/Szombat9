@@ -68,3 +68,15 @@ with open(os.path.join(path_forras, "plus.txt"), "a+", encoding="utf-8") as f:
 # w+: Írás és olvasás, kurzor az elejéről, törli fájl tartalmát
 # a+: Írás és olvasás, kurzor a végéről, nem törli fájl tartalmát
     
+# Feladat: dekódold és írd ki a code.txt tartalmát
+
+path = os.path.join(path_forras, "code.txt")
+
+decoded = ""
+with open(path, "r", encoding="utf-8") as f:
+    for sor in f:
+        sor = sor.strip().split()
+        for szam in sor:
+            decoded += chr(int(szam))
+with open(os.path.join(path_forras, "alma.txt"), "w") as f:
+    f.write(decoded)
